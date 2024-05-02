@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Rating Predictor Application</title>
+    <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: hsl(233, 41%, 61%);
+        }
+
+        header {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .description {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .get-started button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: 2px solid #2980b9;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em; /* Adjust font size here */
+            transition: background-color 0.3s ease; /* Smooth transition for background color */
+            width: 200px; /* Set the default width */
+        }
+
+        .get-started button:hover {
+            background-color: #2980b9; /* Darker shade of the button color on hover */
+        }
+
+
+        /* Form styles */
+        form {
+            display: none;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        form.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: 2px solid #2980b9;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Media queries for responsive button size */
+        @media only screen and (max-width: 600px) {
+            .get-started button {
+                width: 100%; /* Adjust width for smaller screens */
+            }
+        }
+
+        @media only screen and (min-width: 601px) and (max-width: 900px) {
+            .get-started button {
+                width: 150px; /* Adjust width for medium screens */
+            }
+        }
+
+        @media only screen and (min-width: 901px) and (max-width: 1200px) {
+            .get-started button {
+                width: 180px; /* Adjust width for larger screens */
+            }
+        }
+
+        @media only screen and (min-width: 1201px) {
+            .get-started button {
+                width: 200px; /* Default width for extra large screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movies Rating Application</h1>
+    </header>
+    <div class="container">
+        <div class="description">
+            <h2>Description of the project</h2>
+            <p>The Web Based Movie Rating Prediction System is a comprehensive platform designed to accurately forecast movie ratings using advanced machine learning algorithms. 
+                Leveraging factors such as duration, release year, and viewer votes, this system employs Python and Jupyter Notebook for data analysis and model development. 
+                Integrated with Django for web development, alongside HTML, CSS, and JavaScript for frontend implementation, the project offers a user-friendly interface for users to input movie details and receive precise rating predictions, facilitating informed decision-making for both viewers and filmmakers alike.</p>
+        </div>
+        
+        <img src="https://i.imgur.com/D6BgJYW.jpg" alt="Project Image">
+
+        <div class="get-started">
+            <button onclick="showForm()">Let's Predict</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        {% if result %}
+            <h1>Your Movies rating is {{ result }}</h1>
+        {% endif %}
+
+        <form id="ratingForm" action="result">
+            {% csrf_token %}
+            <label for="Movie_year">Movie Year:</label><br>
+            <input type="number" id="Movie_year" name="Movie_year" required><br>
+            <label for="Duration">Duration:</label><br>
+            <input type="number" id="Duration" name="Duration" required><br>
+            <label for="Movies_votes">Viewer Votes:</label><br>
+            <input type="number" id="Movies_votes" name="Movies_votes" required><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function showForm() {
+            var form = document.getElementById("ratingForm");
+            form.classList.toggle("active");
+            form.reset();
+        }
+    </script>
+</body>
+</html>

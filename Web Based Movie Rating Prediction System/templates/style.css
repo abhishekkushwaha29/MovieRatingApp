@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #009688;
+}
+
+form {
+    width: 300px; /* Adjust the width based on your design */
+    margin: 20px auto; /* Center the form horizontally and add margin */
+}
+
+input {
+    margin-bottom: 10px;
+    width: 100%; /* Make input boxes fill the width of the form */
+    padding: 10px; /* Add padding for better spacing */
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
